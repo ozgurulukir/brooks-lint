@@ -6,6 +6,27 @@ All notable changes to brooks-lint are documented here.
 
 ---
 
+## [1.2.2] - 2026-04-29
+
+Aggressive token reduction across all skill guides and shared framework files.
+Net result: ~212 lines removed (~9% of total guide content), with no behavioral change.
+
+### Changed
+
+- **`skills/_shared/common.md`** — condensed Iron Law and Output sections; removed
+  redundant YAML config example.
+- **`skills/_shared/decay-risks.md`**, **`test-decay-risks.md`** — tightened
+  per-risk introductions to single-line format.
+- **`skills/_shared/source-coverage.md`** — removed redundant prose; frontmatter
+  source list unchanged (validator derives book count from it).
+- **`skills/brooks-audit/architecture-guide.md`**, **`brooks-debt/debt-guide.md`**,
+  **`brooks-health/health-guide.md`**, **`brooks-review/pr-review-guide.md`**,
+  **`brooks-sweep/sweep-guide.md`**, **`brooks-test/test-guide.md`** — condensed
+  verbose procedural prose to terse arrow-flow notation throughout.
+- **`skills/brooks-review/SKILL.md`** — removed 2 redundant lines.
+
+---
+
 ## [1.2.1] - 2026-04-28
 
 Fix Codex CLI compatibility: skill descriptions exceeded the 1024-character
