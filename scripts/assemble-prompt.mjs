@@ -32,17 +32,20 @@ export function assembleSystemPrompt(mode, skillsDir) {
     sections.push(read(path.join(sharedDir, "decay-risks.md")));
   }
 
-  // Add mode-specific guide
-  const guideMap = {
-    review: ["brooks-review", "pr-review-guide.md"],
-    audit: ["brooks-audit", "architecture-guide.md"],
-    debt: ["brooks-debt", "debt-guide.md"],
-    test: ["brooks-test", "test-guide.md"],
-    health: ["brooks-health", "health-guide.md"],
-  };
+   // Add mode-specific guide (guide filename only; directory is the mode name)
+   const guideMap = {
+     review: "pr-review-guide.md",
+     audit: "architecture-guide.md",
+     debt: "debt-guide.md",
+     test: "test-guide.md",
+     health: "health-guide.md",
+   };
 
-  const [modeDir, guideFile] = guideMap[mode] ?? (() => { throw new Error(`Unknown mode: ${mode}`); })();
-  sections.push(read(path.join(skillsDir, modeDir, guideFile)));
+   const guideFile = guideMap[mode];
+   if (!guideFile) {
+     throw new Error(`Unknown mode: ${mode}`);
+   }
+   sections.push(read(path.join(skillsDir, mode, guideFile)));
 
   return sections.join("\n\n---\n\n");
 }

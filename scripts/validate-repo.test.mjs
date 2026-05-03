@@ -18,7 +18,7 @@ import {
   countBookSections,
   countProductionRisks,
   countTestRisks,
-  extractChangelogVersion,
+  parseKeepAChangelogVersion,
   extractGuideStepLabels,
 } from "./frontmatter.mjs";
 import { extractRiskCodes, classify } from "./eval-utils.mjs";
@@ -161,22 +161,22 @@ test("does not count production risk headers", () => {
   assert.equal(countTestRisks(text), 2);
 });
 
-// ── extractChangelogVersion ────────────────────────────────────────────────
+// ── parseKeepAChangelogVersion ────────────────────────────────────────────────
 
-console.log("\nextractChangelogVersion");
+console.log("\nparseKeepAChangelogVersion");
 
 test("extracts version from standard changelog header", () => {
   const text = "# Changelog\n\n## [1.2.3] - 2026-04-12\n\nSome changes.";
-  assert.equal(extractChangelogVersion(text), "1.2.3");
+  assert.equal(parseKeepAChangelogVersion(text), "1.2.3");
 });
 
 test("returns the first (latest) version when multiple entries exist", () => {
   const text = "## [2.0.0] - 2026-04-12\n\n## [1.9.0] - 2026-03-01\n";
-  assert.equal(extractChangelogVersion(text), "2.0.0");
+  assert.equal(parseKeepAChangelogVersion(text), "2.0.0");
 });
 
 test("returns null when no version header found", () => {
-  assert.equal(extractChangelogVersion("# Changelog\n\nNo versions yet."), null);
+  assert.equal(parseKeepAChangelogVersion("# Changelog\n\nNo versions yet."), null);
 });
 
 // ── extractGuideStepLabels ───────────────────────────────────────────────
