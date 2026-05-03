@@ -22,8 +22,12 @@ export function check(context) {
       errors.push(`skills/${mode}/SKILL.md should have a ## Setup section`);
     }
 
-    if (!skillMd.includes("## Process")) {
-      errors.push(`skills/${mode}/SKILL.md should have a ## Process section`);
+    // Check Process section exists and contains at least one numbered item
+    const processMatch = skillMd.match(/## Process\n([\s\S]*?)(?=\n##|$)/);
+    if (!processMatch) {
+      errors.push(`skills/${mode}/SKILL.md has no ## Process section`);
+    } else if (!/^\d+\./m.test(processMatch[1])) {
+      errors.push(`skills/${mode}/SKILL.md Process section has no numbered items`);
     }
 
     // Check frontmatter description references current book count

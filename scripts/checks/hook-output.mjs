@@ -3,7 +3,7 @@
  */
 
 import { execFileSync } from "node:child_process";
-import { mkdtempSync } from "node:fs";
+import { mkdtempSync, rmSync } from "node:fs";
 import path from "node:path";
 import os from "node:os";
 
@@ -12,12 +12,17 @@ export function check(context) {
 
   function runHook(env = {}) {
     const tempHome = mkdtempSync(path.join(os.tmpdir(), "brooks-lint-hook-home-"));
-    const stdout = execFileSync("bash", ["hooks/session-start"], {
-      cwd: root,
-      env: { ...process.env, HOME: tempHome, ...env },
-      encoding: "utf8",
-    });
-    return JSON.parse(stdout);
+    try {
+      const stdout = execFileSync("bash", ["hooks/session-start"], {
+        cwd: root,
+        env: { ...process.env, HOME: tempHome, ...env },
+        encoding: "utf8",
+      });
+      return JSON.parse(stdout);
+    } finally {
+      // Clean up the temporary HOME directory to avoid resource leaks
+      rmSync(tempHome, { recursive: true, force: true });
+    }
   }
 
   const defaultOut = runHook();
