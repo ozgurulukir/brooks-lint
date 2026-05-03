@@ -58,10 +58,13 @@ export function countTestRisks(text) {
 }
 
 /**
- * Extract the latest version string from CHANGELOG.md.
+ * Parse the latest version string from a Keep a Changelog formatted CHANGELOG.md.
+ * Expected format: `## [1.2.3] - 2024-01-15`
  * Returns null if no version header is found.
+ *
+ * Keep a Changelog: https://keepachangelog.com/
  */
-export function extractChangelogVersion(text) {
+export function parseKeepAChangelogVersion(text) {
   return text.match(/^## \[(.+?)\] - /m)?.[1] ?? null;
 }
 

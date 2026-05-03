@@ -50,7 +50,7 @@ sampled vs. inferred, and flag this in the report scope line.
 
 Before evaluating any risk, map the dependencies as a Mermaid diagram. Use this format:
 
-````mermaid
+```mermaid
 graph TD
   subgraph UI
     WebApp
@@ -85,7 +85,9 @@ graph TD
   class PaymentService critical
   class OrderService warning
   class Database,MessageQueue,AuthService,WebApp,MobileApp clean
-````
+```
+
+**Circular dependency notation:** Use a dotted arrow with a label: `A -.->|circular| B` (see example above).
 
 Draw the graph structure first — nodes, subgraphs, and edges — without any `classDef` or
 `class` lines. You cannot assign colors until you have completed the risk scan in Steps 2–4.
@@ -96,7 +98,7 @@ based on findings. The example above shows the final colored output.
 Rules:
 1. **Nodes** — Use top-level directories or services as nodes, not individual files
 2. **Grouping** — One `subgraph` per architectural layer or top-level directory (e.g., UI, Domain, Infrastructure)
-3. **Edges** — Solid arrows (`-->`) point FROM the depending module TO the dependency; use dotted arrows with label (`-.->|circular|`) for circular dependencies. If no circular dependencies exist, use only solid arrows
+3. **Edges** — Solid arrows (`-->`) point FROM the depending module TO the dependency; for circular dependencies, use the dotted-arrow notation shown above. If no circular dependencies exist, use only solid arrows
 4. **Node limit** — Keep the graph to ~50 nodes maximum; collapse low-risk leaf modules into their parent if needed
 5. **Fan-out** — For any node with fan-out > 5, use a descriptive label: `HighFanOutModule["ModuleName (fan-out: 7)"]`
 6. **Colors** — Apply `classDef` colors AFTER completing Steps 2-4: `critical` (red `#ff6b6b`) for nodes with Critical findings, `warning` (yellow `#ffd43b`) for Warning findings, `clean` (green `#51cf66`) for nodes with no findings or only Suggestions. If no findings at all, classify all nodes as `clean`

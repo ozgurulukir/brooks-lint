@@ -2,13 +2,14 @@
   "name": "brooks-lint",
   "version": "1.2.2",
   "type": "module",
-  "scripts": {
-    "validate": "node scripts/validate-repo.mjs",
-    "test": "node scripts/validate-repo.test.mjs",
-    "evals": "node scripts/run-evals.mjs",
-    "evals:live": "node scripts/run-evals-live.mjs",
-    "history": "node scripts/history.mjs"
-  },
+   "scripts": {
+     "validate": "node scripts/validate-repo.mjs",
+     "test": "node scripts/validate-repo.test.mjs",
+     "evals": "node scripts/run-evals.mjs",
+     "evals:live": "node scripts/run-evals-live.mjs",
+     "history": "node scripts/history.mjs",
+     "sync-manifests": "node scripts/sync-manifests.mjs"
+   },
   "devDependencies": {
     "@anthropic-ai/sdk": "^0.52.0"
   }
