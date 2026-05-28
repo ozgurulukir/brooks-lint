@@ -495,7 +495,7 @@ This project stands on the shoulders of twelve giants:
 **Test Quality Framework**
 - Gerard Meszaros — *xUnit Test Patterns* (2007)
 - Roy Osherove — *The Art of Unit Testing* (2009, 3rd ed. 2023)
-- Google Engineering — *How Google Tests Software* (2012)
+- James Whittaker, Jason Arbon & Jeff Carollo — *How Google Tests Software* (2012)
 - Michael Feathers — *Working Effectively with Legacy Code* (2004)
 
 The decay risks encoded in this tool are our synthesis of their ideas, applied to modern code quality assessment.

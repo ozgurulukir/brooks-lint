@@ -637,7 +637,7 @@ unchanged. Existing users on v1.0.0 can upgrade at any time with no migration ri
 
 - Gerard Meszaros — *xUnit Test Patterns* (2007)
 - Roy Osherove — *The Art of Unit Testing* (2009, 3rd ed. 2023)
-- Google Engineering — *How Google Tests Software* (2012)
+James Whittaker, Jason Arbon & Jeff Carollo — *How Google Tests Software* (2012)
 - Michael Feathers — *Working Effectively with Legacy Code* (2004)
 
 ---

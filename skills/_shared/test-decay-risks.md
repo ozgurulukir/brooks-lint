@@ -188,7 +188,7 @@ Coverage measures execution, not verification. 90% line coverage can still miss 
 | Symptom | Book | Principle / Smell |
 |---------|------|-------------------|
 | Legacy code = no tests | Feathers — Working Effectively with Legacy Code | Ch. 1: "Legacy code is code without tests" |
-| Change coverage vs line coverage | Google — How Google Tests Software | Ch. 11: Testing at Google Scale |
+| Change coverage vs line coverage | Winters et al. — Software Engineering at Google | Ch. 16: Testing Overview |
 | Happy-path only | Osherove — The Art of Unit Testing | Test completeness principle |
 
 ### Severity Guide
@@ -228,7 +228,7 @@ Wrong suite shape is slow and expensive — not from bad tests, but from using t
 
 | Symptom | Book | Principle / Smell |
 |---------|------|-------------------|
-| Inverted pyramid | Google — How Google Tests Software | 70:20:10 unit:integration:E2E ratio |
+| Inverted pyramid | Winters et al. — Software Engineering at Google | Ch. 16: Testing Overview (test portfolio balance) |
 | No seam points | Feathers — Working Effectively with Legacy Code | Ch. 4: Seam Model |
 | Missing Characterization Tests | Feathers — Working Effectively with Legacy Code | Ch. 13: Characterization Tests |
 | Suite execution time | Meszaros — xUnit Test Patterns | Slow Tests (p. 253) |
@@ -241,6 +241,6 @@ Wrong suite shape is slow and expensive — not from bad tests, but from using t
 
 ### What Not to Flag
 
-- Deviating from 70:20:10 can be justified by platform constraints or product risk
+- Deviating from a standard test ratio can be justified by platform constraints or product risk
 - A suite heavy on integration tests can still be healthy if feedback is fast and purposefully layered
 - A small number of critical-path E2E tests is desirable, not a smell

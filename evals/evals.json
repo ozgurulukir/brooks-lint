@@ -279,7 +279,7 @@
       "id": 34,
       "name": "t5-positive-java",
       "prompt": "Review these tests:\n\n```java\n// PaymentService has methods: charge(), refund(), handleWebhook(), retryFailed()\n// Current test coverage: 87% line coverage\n\n@Test\nvoid charge_validCard_returnsSuccess() {\n    PaymentResult result = service.charge(validCard(), 1000);\n    assertEquals(\"success\", result.getStatus());\n}\n\n@Test\nvoid charge_expiredCard_returnsDeclined() {\n    PaymentResult result = service.charge(expiredCard(), 1000);\n    assertEquals(\"declined\", result.getStatus());\n}\n\n@Test\nvoid refund_existingCharge_returnsRefunded() {\n    service.charge(validCard(), 5000);\n    RefundResult result = service.refund(\"ch_1\", 5000);\n    assertEquals(\"refunded\", result.getStatus());\n}\n\n// No tests for:\n// - charge() with network timeout\n// - charge() with amount = 0 or negative\n// - refund() with amount > original charge\n// - refund() for already-refunded charge\n// - handleWebhook() — entire method untested\n// - retryFailed() — entire method untested\n```",
-      "expected_output": "Must identify T5 Coverage Illusion. Symptoms: 87% line coverage but error-handling paths untested (network timeout, invalid amounts); two entire methods (handleWebhook, retryFailed) have no tests; happy-path only. Must cite Feathers — WELC (legacy code = no tests) and Google — How Google Tests Software (change coverage vs line coverage). Iron Law format required.",
+      "expected_output": "Must identify T5 Coverage Illusion. Symptoms: 87% line coverage but error-handling paths untested (network timeout, invalid amounts); two entire methods (handleWebhook, retryFailed) have no tests; happy-path only. Must cite Feathers — WELC (legacy code = no tests) and Winters et al. — Software Engineering at Google (change coverage vs line coverage, Ch. 16: Testing Overview). Iron Law format required.",
       "files": [],
       "mode": "test"
     },
@@ -296,7 +296,7 @@
       "id": 36,
       "name": "t6-positive-python",
       "prompt": "Review this test suite overview:\n\n```\ntests/\n├── e2e/                    # 47 tests, avg 8s each (~6 min total)\n│   ├── test_login_flow.py\n│   ├── test_checkout_flow.py\n│   ├── test_admin_dashboard.py\n│   ├── test_search.py\n│   └── ... (12 more files)\n├── integration/            # 83 tests, avg 2s each (~3 min total)\n│   ├── test_user_api.py\n│   ├── test_order_api.py\n│   ├── test_payment_api.py\n│   └── ... (8 more files)\n└── unit/                   # 24 tests, avg 10ms each (~0.2s total)\n    ├── test_validators.py\n    └── test_formatters.py\n\nTotal: 154 tests, ~9 min execution time\nCI runs full suite on every push.\n```",
-      "expected_output": "Must identify T6 Architecture Mismatch. Symptoms: inverted test pyramid (47 E2E > 24 unit); 9-minute suite dominated by slow E2E tests; unit test coverage minimal (2 files for validators and formatters only). Must cite Google — How Google Tests Software (70:20:10 ratio) and Meszaros — xUnit Test Patterns (test suite design). Iron Law format required.",
+      "expected_output": "Must identify T6 Architecture Mismatch. Symptoms: inverted test pyramid (47 E2E > 24 unit); 9-minute suite dominated by slow E2E tests; unit test coverage minimal (2 files for validators and formatters only). Must cite Winters et al. — Software Engineering at Google (test portfolio balance, Ch. 16: Testing Overview) and Meszaros — xUnit Test Patterns (test suite design). Iron Law format required.",
       "files": [],
       "mode": "test"
     },
@@ -304,7 +304,7 @@
       "id": 37,
       "name": "t6-clean-typescript",
       "prompt": "Review this test suite overview:\n\n```\ntests/\n├── e2e/                    # 12 tests, critical user journeys only\n│   ├── checkout.spec.ts\n│   └── auth.spec.ts\n├── integration/            # 45 tests, API contract + DB integration\n│   ├── user-api.test.ts\n│   ├── order-api.test.ts\n│   └── payment-api.test.ts\n└── unit/                   # 180 tests, domain logic + utilities\n    ├── order.test.ts\n    ├── user.test.ts\n    ├── payment.test.ts\n    ├── pricing.test.ts\n    ├── validators.test.ts\n    └── ... (8 more files)\n\nTotal: 237 tests, ~45s execution time\nUnit tests run on pre-commit. Full suite on CI.\n```",
-      "expected_output": "Must NOT flag T6 Architecture Mismatch. Pyramid is healthy (180:45:12 ≈ 76:19:5, close to 70:20:10); suite runs in < 1 minute; unit tests gate commits. Health Score should be high (85+).",
+      "expected_output": "Must NOT flag T6 Architecture Mismatch. Pyramid is healthy (180:45:12 ≈ 76:19:5, close to a standard test ratio); suite runs in < 1 minute; unit tests gate commits. Health Score should be high (85+).",
       "files": [],
       "mode": "test",
       "no_risk_codes": true
@@ -357,7 +357,7 @@
       "id": 43,
       "name": "t6-legacy-risk-balanced-clean-java",
       "prompt": "Review this test suite overview:\n\n```\nlegacy-billing/\n├── characterization/       # 48 tests around invoice recalculation and tax edge cases\n├── integration/            # 62 tests around DB + queue + payment gateway adapters\n├── unit/                   # 34 tests for pricing rules, money math, and retry policies\n└── e2e/                    # 6 tests for payment success/failure and refund flows\n\nTotal runtime: ~4 minutes on CI\nNotes:\n- The team added characterization tests before touching legacy invoice logic.\n- Billing adapters are behind seams (FakeGateway, InMemoryOutbox) for most tests.\n- E2E is kept to customer-critical paths only.\n```",
-      "expected_output": "Must NOT flag T6 Architecture Mismatch as Critical solely because the ratio is not close to 70:20:10. The suite is risk-shaped, uses characterization tests and seams for legacy code, and keeps runtime reasonable. If any finding exists, it should acknowledge the deliberate tradeoff rather than treating the ratio alone as a smell.",
+      "expected_output": "Must NOT flag T6 Architecture Mismatch as Critical solely because the ratio is not close to a standard test ratio. The suite is risk-shaped, uses characterization tests and seams for legacy code, and keeps runtime reasonable. If any finding exists, it should acknowledge the deliberate tradeoff rather than treating the ratio alone as a smell.",
       "files": [],
       "mode": "test",
       "no_risk_codes": true

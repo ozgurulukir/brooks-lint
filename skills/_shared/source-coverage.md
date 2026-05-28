@@ -163,6 +163,8 @@ It exists to prevent shallow "book-name citation" reviews.
 **Encoded today**
 - Hyrum's Law
 - Dependency management and upgrade blockage
+- Change coverage vs line coverage
+- Test portfolio balance and suite shape economics
 - Code sustainability: whether code as written can be maintained, migrated, and upgraded
   over a multi-year horizon without heroic effort
 - Backward compatibility: whether API changes preserve existing callers or force
@@ -233,16 +235,16 @@ It exists to prevent shallow "book-name citation" reviews.
 
 ---
 
-## Google Engineering — *How Google Tests Software*
+## Whittaker, Arbon, Carollo — *How Google Tests Software*
 
 **Encoded today**
-- Change coverage vs line coverage
-- Pyramid shape and suite portfolio economics
+- Test size categories (Small/Medium/Large) and test role taxonomy (SET/TE/TEM)
+- Test automation philosophy and balanced test portfolio
 
 **Do not ignore**
 - Whether the suite reflects business risk, not just percentages
 - Whether expensive tests dominate feedback loops
 
 **Do not over-flag**
-- A non-70:20:10 ratio can be healthy when justified by platform constraints or product risk
+- A non-standard test ratio can be healthy when justified by platform constraints or product risk
 - High coverage is useful when paired with meaningful branch and change protection

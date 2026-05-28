@@ -93,7 +93,7 @@ Each change ripples to unrelated modules, slowing velocity and multiplying regre
 | Orthogonality violation | Hunt & Thomas — The Pragmatic Programmer | Ch. 2: Orthogonality |
 | DIP violation | Martin — Clean Architecture | Dependency Inversion Principle |
 | High change propagation radius | Brooks — The Mythical Man-Month | Ch. 2: Brooks's Law (communication overhead) |
-| Hyrum's Law | Winters et al. — Software Engineering at Google | Ch. 1: Hyrum's Law |
+| Hyrum's Law | Winters et al. — Software Engineering at Google | Ch. 4: Time and Change |
 | Information Leakage | Ousterhout — A Philosophy of Software Design | Ch. 5: Information Hiding and Leakage |
 
 ### Severity Guide
@@ -232,7 +232,7 @@ When business logic depends on infrastructure, infrastructure changes cascade in
 | Conceptual integrity | Brooks — The Mythical Man-Month | Ch. 4: Conceptual Integrity |
 | Law of Demeter | Hunt & Thomas — The Pragmatic Programmer | Ch. 5: Decoupling and the Law of Demeter |
 | SOLID violations | Martin — Clean Architecture | Single Responsibility, Open/Closed Principles |
-| Diamond dependency / upgrade blockage | Winters et al. — Software Engineering at Google | Ch. 21: Dependency Management |
+| Diamond dependency / upgrade blockage | Winters et al. — Software Engineering at Google | Ch. 27: Dependency Management |
 
 ### Severity Guide
 

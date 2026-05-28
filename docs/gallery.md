@@ -446,14 +446,14 @@ Ratio (target):  Unit 70% : Integration 20% : E2E 10%
 #### 🔴 Architecture Mismatch — Fully inverted test pyramid
 
 **Symptom:** Only 24 of 154 tests (16%) are unit tests. E2E + integration = 84% of test count.
-**Source:** Google — *How Google Tests Software* — 70:20:10 ratio; Meszaros — *xUnit Test Patterns* — test suite design
+**Source:** Winters et al. — *Software Engineering at Google* — Ch. 16: Testing Overview (test portfolio balance); Meszaros — *xUnit Test Patterns* — test suite design
 **Consequence:** CI takes ~9 minutes (~542s) per push. Slow feedback causes developers to push in batches, reducing commit granularity. The E2E layer is most likely to produce flaky failures.
 **Remedy:** Target 70% unit. For each E2E file, identify core business logic and write unit tests. Reduce E2E to 5-8 critical smoke tests.
 
 #### 🔴 Architecture Mismatch — 9-minute suite blocks CI fast-feedback
 
 **Symptom:** Full suite ~542 seconds, dominated by E2E tests averaging 8s each.
-**Source:** Meszaros — *xUnit Test Patterns*; Google — *How Google Tests Software* — Ch. 11
+**Source:** Meszaros — *xUnit Test Patterns*; Winters et al. — *Software Engineering at Google* — Ch. 16: Testing Overview
 **Remedy:** Split CI into two stages: (1) unit tests only, < 60s, blocks merge; (2) integration + E2E, async non-blocking.
 
 #### 🟡 Coverage Illusion — Core domain untested at unit level
